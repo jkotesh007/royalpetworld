@@ -1,7 +1,7 @@
 ---
 id: ADR-003
 title: Immutable WordPress image with plugin manifest
-status: proposed
+status: accepted
 date: 2026-10-18
 tags: [adr]
 ---
@@ -17,4 +17,11 @@ Build a Docker image from `wp/Dockerfile`: official WordPress image + WP-CLI; th
 - Coolify one-click WordPress service with a persistent wp-content volume — faster start, but no reproducibility.
 
 ## Consequences
-Plugin updates = edit manifest → redeploy staging → test → deploy production. Phase 0 must validate this works on Coolify; if it blocks progress, revert to the one-click service and mark this ADR superseded.
+Plugin updates = edit manifest → redeploy staging → test → deploy production.
+
+**Validated on Coolify 2026-10-18** (Phase 0): deployed as a `dockercompose`-buildpack
+application from the GitHub repo, staging live at
+royalpetworld-staging.switch2growth.com. One real issue found and fixed: a fresh
+named volume for `wp-content/uploads` mounts root-owned while Apache's children run
+as `www-data` — fixed with a `chown` wrapped around the base image's entrypoint (see
+`docker-compose.yml`). Accepting this ADR as-is.

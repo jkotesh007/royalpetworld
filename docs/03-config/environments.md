@@ -7,13 +7,15 @@ updated: 2026-10-18
 | Item | Staging | Production |
 |---|---|---|
 | URL | https://royalpetworld-staging.switch2growth.com | https://royalpetworld.switch2growth.com |
-| Coolify project / env | Royal Pet World / staging | Royal Pet World / production |
-| Coolify app UUID | _fill in Phase 0_ | _Phase 6_ |
-| Container name | _fill in Phase 0_ | _Phase 6_ |
-| Database host / name | _fill in Phase 0_ | _Phase 6_ |
+| Coolify project / env | Royal Pet World (`pljuizbkmnhwdcu3tdn89qsl`) / staging (`heak3nr2jlaytn0dj7avxzix`) | Royal Pet World / production — _Phase 6_ |
+| Coolify app UUID | `jexn2vgxlnh5cm6luasjh2zr` (royalpetworld-staging, build_pack `dockercompose`) | _Phase 6_ |
+| Container name | `wordpress-jexn2vgxlnh5cm6luasjh2zr-<redeploy-timestamp>` (suffix changes every deploy) | _Phase 6_ |
+| Database host / name | `z44bhrpwy7chctgzokbyr39y` (mariadb-shared, same network) / `rpw_staging`, user `rpw_staging` | _Phase 6_ |
 | Git branch deployed | `develop` | `main` |
-| Indexing | blocked (noindex + basic auth) | allowed |
+| Indexing | noindex (set via `wp option update blog_public 0` — Coolify's `noindex_domains` app field did not persist, retried once, not chased further) | allowed |
+| Basic auth | **not enforced** — see open question #11 | n/a |
 | `DISALLOW_FILE_MODS` | false | true |
+| Deploy private key | Coolify security key `xkk5wxozaevpqkifhholwufq`; local half `~/.ssh/royalpetworld_deploy` + `~/.ssh/config` host alias `github-royalpetworld` |  |
 
 ## External services
 | Service | URL | Notes |
