@@ -1,0 +1,35 @@
+# Coolify "Docker Compose" application. One container, built from wp/Dockerfile
+# (ADR-003). DB credentials and domain are Coolify env vars, set per environment
+# (staging/production) — never hardcoded here. See docs/03-config/environments.md
+# and docs/05-runbooks/deploy.md.
+services:
+  wordpress:
+    build:
+      context: .
+      dockerfile: wp/Dockerfile
+    restart: unless-stopped
+    environment:
+      WORDPRESS_DB_HOST: ${WORDPRESS_DB_HOST}
+      WORDPRESS_DB_USER: ${WORDPRESS_DB_USER}
+      WORDPRESS_DB_PASSWORD: ${WORDPRESS_DB_PASSWORD}
+      WORDPRESS_DB_NAME: ${WORDPRESS_DB_NAME}
+      WORDPRESS_TABLE_PREFIX: wp_
+      WORDPRESS_DEBUG: 'false'
+      # Hard rule (ADR-003): never editable from wp-admin.
+      WORDPRESS_DISALLOW_FILE_EDIT: 'true'
+      # false on staging, true on production — set per Coolify environment.
+      WORDPRESS_DISALLOW_FILE_MODS: ${DISALLOW_FILE_MODS:-false}
+      SERVICE_FQDN_WORDPRESS: ${SERVICE_FQDN_WORDPRESS}
+    volumes:
+      # Only persistent path (ADR-003) — everything else in wp-content is rebuilt
+      # from the image on every boot.
+      - wp-uploads:/var/www/html/wp-content/uploads
+    networks:
+      - coolify
+
+volumes:
+  wp-uploads:
+
+networks:
+  coolify:
+    external: true
