@@ -19,36 +19,12 @@ services:
       WORDPRESS_DISALLOW_FILE_EDIT: 'true'
       # false on staging, true on production — set per Coolify environment.
       WORDPRESS_DISALLOW_FILE_MODS: ${DISALLOW_FILE_MODS:-false}
-      # Unused by WordPress itself — referencing these here is what makes Coolify
-      # write them into the stack's .env file, which is what makes the ${...}
-      # substitution in the `labels:` block below actually resolve. A var that
-      # only appears in `labels:` is never picked up and is left as a literal
-      # "${NAME}" string — confirmed Phase 0 2026-10-18.
-      APP_ENV: ${APP_ENV}
-      APP_DOMAIN: ${APP_DOMAIN}
-      BASIC_AUTH_HTPASSWD_LINE: ${BASIC_AUTH_HTPASSWD_LINE}
     volumes:
       # Only persistent path (ADR-003) — everything else in wp-content is rebuilt
       # from the image on every boot.
       - wp-uploads:/var/www/html/wp-content/uploads
     networks:
       - coolify
-    # Staging-only HTTP basic auth (ADR-002: staging is noindex + basic-auth).
-    # Coolify's native is_http_basic_auth_enabled flag does NOT wire into Traefik
-    # for a dockercompose-buildpack app using docker_compose_domains — confirmed
-    # Phase 0 2026-10-18 (flag saves fine via API, container gets no middleware).
-    # Worked around with our own router, named per-environment via APP_ENV so
-    # staging/production never collide. Phase 6: drop this block for production
-    # (clear BASIC_AUTH_HTPASSWD_LINE and the three router labels below), since
-    # production must NOT be behind basic auth.
-    labels:
-      - "traefik.http.middlewares.rpw-${APP_ENV}-auth.basicauth.users=${BASIC_AUTH_HTPASSWD_LINE}"
-      - "traefik.http.routers.rpw-${APP_ENV}-secure.rule=Host(`${APP_DOMAIN}`)"
-      - "traefik.http.routers.rpw-${APP_ENV}-secure.entrypoints=https"
-      - "traefik.http.routers.rpw-${APP_ENV}-secure.tls=true"
-      - "traefik.http.routers.rpw-${APP_ENV}-secure.tls.certresolver=letsencrypt"
-      - "traefik.http.routers.rpw-${APP_ENV}-secure.middlewares=rpw-${APP_ENV}-auth"
-      - "traefik.http.routers.rpw-${APP_ENV}-secure.priority=100"
 
 volumes:
   wp-uploads:
