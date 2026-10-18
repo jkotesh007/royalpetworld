@@ -35,7 +35,7 @@ Client WordPress + WooCommerce site for Royal Pet World (pet shop, services, mem
 - Twenty API: REST/GraphQL at `$TWENTY_API_URL` with `Authorization: Bearer $TWENTY_API_KEY` (Royal Pet World workspace key only).
 
 ## Repo layout
-- `wp/` — Dockerfile, plugins.manifest, wp-content (custom plugin `rpw-core`, child theme `astra-child`)
+- `wp/` — Dockerfile, plugins.manifest, wp-content (custom plugin `rpw-core`, child theme `kadence-child`)
 - `n8n/workflows/` — exported workflow JSON
 - `docs/` — Obsidian vault (project memory)
 - `.claude/skills/` — project skills

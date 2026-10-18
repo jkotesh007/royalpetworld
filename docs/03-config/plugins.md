@@ -10,8 +10,8 @@ Source of truth for installation is `wp/plugins.manifest`. This note records WHY
 |---|---|---|---|---|
 | woocommerce | plugin | 11.2.1 | Shop | Phase 0 |
 | woo-razorpay | plugin | 4.8.8 | Payments | Phase 0 |
-| astra | theme | 4.14.1 | Parent theme | Phase 0 |
-| astra-child | theme (custom) | 0.1.0 | Site styling, in repo | Phase 0 |
+| kadence | theme | 1.5.2 | Parent theme — replaced astra 2026-10-18, see [[../02-decisions/ADR-011-theme-astra-to-kadence]] | Phase 0 |
+| kadence-child | theme (custom) | 0.1.0 | Brown palette + shop-page animations, in repo | Phase 0 |
 | rpw-core | plugin (custom) | 0.1.0 | Pets, memberships, webhooks, REST | Phase 2 |
 | _booking plugin_ | plugin | | Services — see [[ADR-005-free-booking-plugin]] | Phase 3 |
 

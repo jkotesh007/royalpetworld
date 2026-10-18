@@ -32,7 +32,7 @@ RUN set -eu; \
 
 # Custom code — the only parts of wp-content this repo owns.
 COPY wp/wp-content/plugins/rpw-core /usr/src/wordpress/wp-content/plugins/rpw-core
-COPY wp/wp-content/themes/astra-child /usr/src/wordpress/wp-content/themes/astra-child
+COPY wp/wp-content/themes/kadence-child /usr/src/wordpress/wp-content/themes/kadence-child
 
 # Only wp-content/uploads persists (see docker-compose.yml); everything else here
 # is re-synced from /usr/src/wordpress by the base image's entrypoint on each boot.

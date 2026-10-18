@@ -2,4 +2,5 @@
 # Pinned 2026-10-18 (Phase 0) — see docs/02-decisions/ADR-003-immutable-wp-image.md
 plugin woocommerce 11.2.1
 plugin woo-razorpay 4.8.8
-theme  astra 4.14.1
+# Parent theme changed Astra -> Kadence 2026-10-18 — see ADR-011
+theme  kadence 1.5.2

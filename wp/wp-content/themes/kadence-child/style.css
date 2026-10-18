@@ -1,0 +1,135 @@
+/*
+ Theme Name:   Kadence Child - Royal Pet World
+ Theme URI:    https://royalpetworld-staging.switch2growth.com
+ Description:  Child theme of Kadence for Royal Pet World — brown/earthy palette, shop-page animations.
+ Author:       Switch2Growth
+ Template:     kadence
+ Version:      0.1.0
+ Text Domain:  kadence-child
+*/
+
+/* ---- Brown / earthy palette (ADR-011) ---- */
+:root {
+	--rpw-brown-dark: #4a2c20;
+	--rpw-brown: #7b4a2f;
+	--rpw-brown-mid: #a9744f;
+	--rpw-brown-light: #d9b48f;
+	--rpw-cream: #fbf3ea;
+	--rpw-text: #3e2723;
+}
+
+body,
+a,
+.site-header,
+.site-footer {
+	color: var(--rpw-text);
+}
+
+body {
+	background-color: var(--rpw-cream);
+}
+
+a,
+.woocommerce-breadcrumb a {
+	color: var(--rpw-brown);
+}
+a:hover {
+	color: var(--rpw-brown-dark);
+}
+
+.site-header,
+.main-navigation,
+.menu-toggle {
+	background-color: var(--rpw-cream);
+}
+
+.main-navigation a,
+.menu-primary-menu-container a {
+	color: var(--rpw-text);
+}
+
+/* Buttons, including WooCommerce add-to-cart / checkout */
+.button,
+.wp-block-button__link,
+button[type="submit"],
+input[type="submit"],
+.woocommerce a.button,
+.woocommerce button.button,
+.woocommerce #respond input#submit,
+.woocommerce a.added_to_cart,
+.single_add_to_cart_button {
+	background-color: var(--rpw-brown) !important;
+	border-color: var(--rpw-brown) !important;
+	color: #fff !important;
+	transition: background-color 0.25s ease, transform 0.15s ease, box-shadow 0.25s ease;
+}
+.button:hover,
+.wp-block-button__link:hover,
+button[type="submit"]:hover,
+input[type="submit"]:hover,
+.woocommerce a.button:hover,
+.woocommerce button.button:hover,
+.single_add_to_cart_button:hover {
+	background-color: var(--rpw-brown-dark) !important;
+	border-color: var(--rpw-brown-dark) !important;
+	transform: translateY(-1px);
+	box-shadow: 0 6px 16px rgba(74, 44, 32, 0.25);
+}
+
+/* Price and sale-badge accents */
+.woocommerce .price,
+.woocommerce ul.products li.product .price {
+	color: var(--rpw-brown-dark);
+}
+.onsale {
+	background-color: var(--rpw-brown-mid) !important;
+}
+
+/* Footer */
+.site-footer,
+footer.site-footer {
+	background-color: var(--rpw-brown-dark);
+	color: var(--rpw-cream);
+}
+.site-footer a {
+	color: var(--rpw-brown-light);
+}
+
+/* ---- Shop page: product card animation ---- */
+.woocommerce ul.products li.product {
+	transition: transform 0.25s ease, box-shadow 0.25s ease;
+	border-radius: 10px;
+	overflow: hidden;
+}
+.woocommerce ul.products li.product:hover {
+	transform: translateY(-6px);
+	box-shadow: 0 14px 28px rgba(74, 44, 32, 0.18);
+}
+.woocommerce ul.products li.product a img {
+	transition: transform 0.4s ease;
+}
+.woocommerce ul.products li.product:hover a img {
+	transform: scale(1.06);
+}
+
+/* Scroll-reveal fade/slide-in, toggled by functions.php's IntersectionObserver script */
+.woocommerce ul.products li.product {
+	opacity: 0;
+	transform: translateY(16px);
+}
+.woocommerce ul.products li.product.rpw-visible {
+	opacity: 1;
+	transform: translateY(0);
+	transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+/* Keep it snappy on small screens: no hover-lift (no hover on touch), fade-in still applies */
+@media (hover: none) {
+	.woocommerce ul.products li.product:hover {
+		transform: none;
+		box-shadow: none;
+	}
+	.woocommerce ul.products li.product:hover a img {
+		transform: none;
+	}
+}

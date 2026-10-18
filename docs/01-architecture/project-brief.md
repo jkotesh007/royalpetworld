@@ -17,7 +17,7 @@ Client: Royal Pet World (pet shop + pet services, Hyderabad). Built and operated
 ## Systems and their single job
 | System | Job | Source of truth for |
 |---|---|---|
-| WordPress + WooCommerce (Astra child theme) | Storefront, checkout (Razorpay), bookings, memberships, My Pets | Money: orders, payments, bookings, membership periods |
+| WordPress + WooCommerce (Kadence child theme) | Storefront, checkout (Razorpay), bookings, memberships, My Pets | Money: orders, payments, bookings, membership periods |
 | Twenty CRM (dedicated Royal Pet World workspace) | Staff/client view, segments, campaigns, message log | Segments, campaigns, messaging log |
 | n8n (existing Coolify instance) | Glue only — no business data stored | Nothing |
 | WhatsApp Cloud API | Delivery | Nothing (placeholder until Meta account is ready) |

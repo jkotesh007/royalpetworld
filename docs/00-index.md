@@ -20,6 +20,7 @@
 - [[ADR-008-whatsapp-dry-run-until-meta]]
 - [[ADR-009-vault-in-repo]]
 - [[ADR-010-shared-twenty-workspace]]
+- [[ADR-011-theme-astra-to-kadence]]
 - Template: [[_adr-template]]
 
 ## Configuration
