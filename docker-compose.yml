@@ -25,6 +25,11 @@ services:
       - wp-uploads:/var/www/html/wp-content/uploads
     networks:
       - coolify
+    # A fresh named volume mounts root-owned, but Apache's children run as
+    # www-data — uploads fail (confirmed Phase 0 2026-10-18: WooCommerce
+    # couldn't write its placeholder image). Fix ownership before the real
+    # entrypoint starts.
+    entrypoint: ["sh", "-c", "chown -R www-data:www-data /var/www/html/wp-content/uploads && exec docker-entrypoint.sh apache2-foreground"]
 
 volumes:
   wp-uploads:
