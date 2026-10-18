@@ -29,3 +29,6 @@ Venture record, not a separate workspace. `TWENTY_API_KEY` in
 Client-facing custom objects (Pet, WhatsApp Campaign/Message) and the client's limited
 role will sit inside Kotesh's shared CRM alongside his other ventures' data, not in an
 isolated workspace. If stronger isolation is needed later, revisit as a new ADR.
+
+Confirmed deliberate by Kotesh in this session ("one more venture is the direction
+that I want to go on twenty"), not a fallback from a blocked dedicated-workspace setup.
