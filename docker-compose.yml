@@ -19,6 +19,14 @@ services:
       WORDPRESS_DISALLOW_FILE_EDIT: 'true'
       # false on staging, true on production — set per Coolify environment.
       WORDPRESS_DISALLOW_FILE_MODS: ${DISALLOW_FILE_MODS:-false}
+      # Unused by WordPress itself — referencing these here is what makes Coolify
+      # write them into the stack's .env file, which is what makes the ${...}
+      # substitution in the `labels:` block below actually resolve. A var that
+      # only appears in `labels:` is never picked up and is left as a literal
+      # "${NAME}" string — confirmed Phase 0 2026-10-18.
+      APP_ENV: ${APP_ENV}
+      APP_DOMAIN: ${APP_DOMAIN}
+      BASIC_AUTH_HTPASSWD_LINE: ${BASIC_AUTH_HTPASSWD_LINE}
     volumes:
       # Only persistent path (ADR-003) — everything else in wp-content is rebuilt
       # from the image on every boot.
