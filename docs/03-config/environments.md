@@ -20,7 +20,7 @@ updated: 2026-10-18
 ## External services
 | Service | URL | Notes |
 |---|---|---|
-| n8n | _fill in_ | existing Coolify instance |
+| n8n | https://n8n.switch2growth.com | existing Coolify instance; access is via its MCP server (`/mcp-server/http`) with a bearer JWT, not the classic `X-N8N-API-KEY` REST key — see open question #12 |
 | Twenty | https://twenty.switch2growth.com | Kotesh's shared workspace, not dedicated — see [[../02-decisions/ADR-010-shared-twenty-workspace]]; RoyalPetWorld Venture id `f788ebfc-5061-456b-a29f-8a2a92fd41f5` |
 | GitHub repo | https://github.com/jkotesh007/royalpetworld | **public, temporary** (Kotesh's choice for now) — private was the original plan |
 
