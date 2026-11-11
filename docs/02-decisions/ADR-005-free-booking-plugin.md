@@ -1,7 +1,7 @@
 ---
 id: ADR-005
 title: Free booking plugin (supersedes earlier premium-plugin plan)
-status: proposed
+status: superseded by ADR-012
 date: 2026-10-18
 tags: [adr]
 ---
@@ -22,3 +22,5 @@ Candidates to verify (free-tier limits change, so check current terms): Amelia L
 
 ## Consequences
 Record the chosen plugin, its version and free-tier limits in [[plugins]]; mark this ADR accepted.
+
+**Superseded by [[ADR-012-latepoint-pay-at-store]] (2026-11-11).**

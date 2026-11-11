@@ -21,6 +21,7 @@
 - [[ADR-009-vault-in-repo]]
 - [[ADR-010-shared-twenty-workspace]]
 - [[ADR-011-theme-astra-to-kadence]]
+- [[ADR-012-latepoint-pay-at-store]]
 - Template: [[_adr-template]]
 
 ## Configuration
@@ -28,6 +29,7 @@
 - [[env-vars]] — variable names and where each is stored (no values)
 - [[plugins]] — every plugin/theme, version, why it exists
 - [[woocommerce-settings]]
+- [[services-booking]] — LatePoint services, hours, agents (placeholders)
 
 ## Integrations
 - [[twenty-schema]]
