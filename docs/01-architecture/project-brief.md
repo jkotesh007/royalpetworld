@@ -1,6 +1,6 @@
 ---
 tags: [architecture, brief]
-updated: 2026-10-18
+updated: 2026-11-11
 ---
 # Project Brief — Royal Pet World
 
@@ -30,7 +30,7 @@ Customer contact data and pets are two-way synced — see [[sync-rules]].
 ### F1 Shop
 - WooCommerce, INR, timezone Asia/Kolkata, Razorpay (test mode on staging).
 - Local delivery restricted to Hyderabad pincodes (shipping zones); store pickup optional.
-- Product import in batches via CSV + WP-CLI; categories by pet type (dog, cat, bird, fish, small pets) × product type.
+- Product import in batches via CSV + WP-CLI; categories pet-first, **cats and dogs only** (decided 2026-11-11) — see [[woocommerce-settings]].
 
 ### F2 Pet profiles (custom plugin `rpw-core`)
 - Private custom post type `rpw_pet`, author = owning customer; never publicly queryable.

@@ -1,6 +1,6 @@
 ---
 tags: [config, woocommerce]
-updated: 2026-10-18
+updated: 2026-11-11
 ---
 # WooCommerce Settings
 
@@ -17,7 +17,26 @@ updated: 2026-10-18
 
 Pincode list: _paste once confirmed with client_.
 
-## Pilot catalog (2026-10-18)
+## Category tree (2026-11-11) — cats & dogs only, pet first
+Kotesh decided 2026-11-11: store sells for **cats and dogs only** (bird/fish/small pets
+dropped) and the menu is **pet first**.
+
+| Parent | Children (slug `dog-…` / `cat-…`) |
+|---|---|
+| Dog (`dog`) | Food, Treats, Toys, Grooming, Health & Vet, Accessories, Beds & Bowls |
+| Cat (`cat`) | Food, Treats, Toys, Litter, Grooming, Health & Vet, Accessories, Beds & Bowls |
+
+- Products that suit both pets are in both trees (WooCommerce multi-category), not tagged.
+- Pet-type tags (Dog/Cat/Bird/Fish/Small Pets/General) and the old flat categories
+  (Pet Food / Veterinary Supplies / Toys) were deleted.
+- 12 bird/fish/small-pet placeholder products moved to **trash** (IDs 34–41, 72–75),
+  restorable from Products → Trash.
+- Menu "Primary" (id 42) assigned to Kadence `primary` + `mobile`: Home, Shop All,
+  Dog ▸ 7 children, Cat ▸ 8 children. Services entry added in Phase 3.
+- Empty so far (no placeholder products): Dog/Cat Accessories, Beds & Bowls, Cat Litter.
+- Script used: one-off `wp eval-file` (not kept); data lives in the DB.
+
+## Pilot catalog (2026-10-18, superseded by the tree above)
 52 placeholder products created via `wp eval-file` (see
 [[../05-runbooks/deploy|deploy runbook]] pattern — script no longer on disk, data is
 in the DB). Categories: Pet Food (22), Veterinary Supplies (15), Toys (15). Tags
