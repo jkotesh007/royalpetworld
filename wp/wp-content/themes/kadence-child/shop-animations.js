@@ -5,6 +5,8 @@
 	if ( ! items.length ) {
 		return;
 	}
+	// CSS hides cards only under html.rpw-anim, so nothing is hidden if this script never runs.
+	document.documentElement.classList.add( 'rpw-anim' );
 
 	if ( ! ( 'IntersectionObserver' in window ) ) {
 		items.forEach( function ( el ) {

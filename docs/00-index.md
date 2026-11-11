@@ -32,6 +32,7 @@
 - [[woocommerce-settings]]
 - [[services-booking]] — LatePoint services, hours, agents (placeholders)
 - [[pets-and-history]] — rpw-core pet profiles + pet history
+- [[site-pages]] — Home / About / Contact build script, placeholders, photo licences
 
 ## Integrations
 - [[twenty-schema]]

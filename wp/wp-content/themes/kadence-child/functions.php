@@ -20,7 +20,9 @@ add_action(
 			wp_get_theme()->get( 'Version' )
 		);
 
-		if ( function_exists( 'is_shop' ) && ( is_shop() || is_product_category() || is_product_tag() ) ) {
+		// Product cards start hidden (style.css) and are revealed by this script — load it
+		// wherever product grids appear, including the [products] blocks on the front page.
+		if ( is_front_page() || ( function_exists( 'is_shop' ) && ( is_shop() || is_product_category() || is_product_tag() ) ) ) {
 			wp_enqueue_script(
 				'rpw-shop-animations',
 				get_stylesheet_directory_uri() . '/shop-animations.js',

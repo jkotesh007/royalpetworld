@@ -4,7 +4,7 @@
  Description:  Child theme of Kadence for Royal Pet World — brown/earthy palette, shop-page animations.
  Author:       Switch2Growth
  Template:     kadence
- Version:      0.1.0
+ Version:      0.2.1
  Text Domain:  kadence-child
 */
 
@@ -113,11 +113,13 @@ footer.site-footer {
 }
 
 /* Scroll-reveal fade/slide-in, toggled by functions.php's IntersectionObserver script */
-.woocommerce ul.products li.product {
+/* Only hide when shop-animations.js is running (it adds html.rpw-anim) — otherwise products
+   on pages without the script (e.g. related products) would stay invisible. */
+.rpw-anim .woocommerce ul.products li.product {
 	opacity: 0;
 	transform: translateY(16px);
 }
-.woocommerce ul.products li.product.rpw-visible {
+.rpw-anim .woocommerce ul.products li.product.rpw-visible {
 	opacity: 1;
 	transform: translateY(0);
 	transition: opacity 0.5s ease, transform 0.5s ease;
@@ -132,4 +134,128 @@ footer.site-footer {
 	.woocommerce ul.products li.product:hover a img {
 		transform: none;
 	}
+}
+
+/* =====================================================================
+   Home / About / Contact pages (2026-11-11) — built by wp/seed/pages-home-about-contact.php
+   ===================================================================== */
+:root {
+	--rpw-sand: #f3e4d3;
+	--rpw-card: #fffaf4;
+	--rpw-radius: 16px;
+	--rpw-shadow: 0 10px 30px rgba(74, 44, 32, 0.10);
+}
+.rpw-hero, .rpw-section, .rpw-band, .rpw-page-hero { padding: clamp(36px, 5vw, 64px) 16px; margin-top: 0 !important; margin-bottom: 0 !important; }
+/* Pages run full width (Kadence fullwidth/unboxed); keep each section's content centred. */
+.rpw-hero > *, .rpw-section > *, .rpw-band > *, .rpw-page-hero > * {
+	max-width: min(1200px, 100%);
+	margin-left: auto !important;
+	margin-right: auto !important;
+	box-sizing: border-box;
+}
+.rpw-section + .rpw-section { padding-top: 0; }
+.rpw-band { background: var(--rpw-sand); }
+.rpw-hero h1, .rpw-page-hero h1 {
+	font-size: clamp(2rem, 4.6vw, 3.4rem);
+	line-height: 1.1;
+	letter-spacing: -0.02em;
+	color: var(--rpw-brown-dark);
+	margin: 0.2em 0 0.35em;
+	text-wrap: balance;
+}
+.rpw-section h2, .rpw-band h2 { font-size: clamp(1.6rem, 3vw, 2.2rem); color: var(--rpw-brown-dark); letter-spacing: -0.01em; margin-bottom: 0.6em; }
+.rpw-eyebrow { text-transform: uppercase; letter-spacing: 0.12em; font-size: 0.8rem; font-weight: 600; color: var(--rpw-brown-mid); margin: 0; }
+.rpw-lead { font-size: 1.15rem; max-width: 36em; opacity: 0.9; }
+.rpw-sub { margin-top: -0.4em; opacity: 0.8; }
+.wp-block-button.is-style-outline > .wp-block-button__link { background: transparent !important; color: var(--rpw-brown) !important; border: 2px solid var(--rpw-brown) !important; }
+.wp-block-button.is-style-outline > .wp-block-button__link:hover { background: var(--rpw-brown) !important; color: #fff !important; }
+.rpw-hero .wp-block-button__link, .rpw-band .wp-block-button__link, .rpw-section .wp-block-button__link, .rpw-page-hero .wp-block-button__link { border-radius: 999px; padding: 0.7em 1.5em; }
+
+/* Hero */
+.rpw-hero { background: linear-gradient(135deg, var(--rpw-cream) 0%, var(--rpw-sand) 100%); overflow: hidden; }
+.rpw-hero-cols { align-items: center !important; gap: clamp(24px, 5vw, 64px) !important; }
+.rpw-hero-photos { position: relative; min-height: 440px; max-width: 560px; margin-left: auto; }
+.rpw-hero-photos .wp-block-image { margin: 0; position: absolute; box-shadow: var(--rpw-shadow); border-radius: var(--rpw-radius); overflow: hidden; border: 6px solid #fff; }
+.rpw-hero-photos .wp-block-image img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.rpw-hero-dog { width: 82%; aspect-ratio: 4 / 3; top: 0; right: 0; transform: rotate(2deg); }
+.rpw-hero-cat { width: 46%; aspect-ratio: 1; bottom: 0; left: 0; transform: rotate(-4deg); z-index: 1; }
+
+/* Cards */
+.rpw-card { background: var(--rpw-card); border-radius: var(--rpw-radius); padding: 24px; box-shadow: var(--rpw-shadow); height: 100%; transition: transform 0.25s ease, box-shadow 0.25s ease; }
+.rpw-card:hover { transform: translateY(-4px); box-shadow: 0 16px 36px rgba(74, 44, 32, 0.16); }
+.rpw-card h3 { margin: 0.2em 0 0.4em; font-size: 1.25rem; color: var(--rpw-brown-dark); }
+.rpw-card h3 a { color: inherit; text-decoration: none; }
+.rpw-card p { margin: 0 0 0.5em; }
+
+/* Shop by pet tiles */
+.rpw-pet-tile { padding: 0; overflow: hidden; }
+.rpw-pet-tile .rpw-tile-img { margin: 0; }
+.rpw-pet-tile .rpw-tile-img img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; display: block; transition: transform 0.5s ease; }
+.rpw-pet-tile:hover .rpw-tile-img img { transform: scale(1.04); }
+.rpw-pet-tile h3, .rpw-pet-tile .rpw-sublinks { padding: 0 24px; }
+.rpw-pet-tile h3 { margin-top: 18px; font-size: 1.6rem; }
+.rpw-pet-tile .rpw-sublinks { padding-bottom: 22px; font-size: 0.95rem; }
+.rpw-sublinks a, .rpw-contact-strip a, .rpw-contact-card a { color: var(--rpw-brown); text-decoration: none; font-weight: 600; }
+.rpw-sublinks a:hover, .rpw-contact-strip a:hover, .rpw-contact-card a:hover { text-decoration: underline; }
+.rpw-card > * + * { margin-top: 0; }
+
+/* Products block */
+.rpw-products h2 { margin-top: 1.2em; }
+.rpw-products h2:first-child { margin-top: 0; }
+
+/* Services (icon tile = ::before, glyph = ::after) */
+.rpw-svc-grid { gap: 20px !important; }
+.rpw-svc { position: relative; }
+.rpw-svc::before { content: ""; display: block; width: 52px; height: 52px; border-radius: 14px; background-color: var(--rpw-sand); margin-bottom: 14px; }
+.rpw-band .rpw-svc::before { background-color: var(--rpw-cream); }
+.rpw-svc::after { content: ""; position: absolute; top: 37px; left: 37px; width: 26px; height: 26px; background: var(--rpw-brown); -webkit-mask: var(--rpw-icon) center / contain no-repeat; mask: var(--rpw-icon) center / contain no-repeat; }
+.rpw-from { font-weight: 700; color: var(--rpw-brown); }
+.rpw-services .wp-block-buttons { margin-top: 28px; }
+.rpw-svc-grooming { --rpw-icon: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%221.8%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Ccircle%20cx%3D%226%22%20cy%3D%226%22%20r%3D%223%22/%3E%3Ccircle%20cx%3D%226%22%20cy%3D%2218%22%20r%3D%223%22/%3E%3Cpath%20d%3D%22M20%204%208.1%2015.9M14.5%2014.5%2020%2020M8.1%208.1%2012%2012%22/%3E%3C/svg%3E"); }
+.rpw-svc-vet { --rpw-icon: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%221.8%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M4%203v6a5%205%200%200%200%2010%200V3%22/%3E%3Cpath%20d%3D%22M9%2014v2a5%205%200%200%200%2010%200v-3%22/%3E%3Ccircle%20cx%3D%2219%22%20cy%3D%2211%22%20r%3D%222%22/%3E%3C/svg%3E"); }
+.rpw-svc-boarding { --rpw-icon: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%221.8%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M3%2011%2012%204l9%207%22/%3E%3Cpath%20d%3D%22M5%2010v10h14V10%22/%3E%3Cpath%20d%3D%22M10%2020v-5h4v5%22/%3E%3C/svg%3E"); }
+.rpw-svc-training { --rpw-icon: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%221.8%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%2212%22%20r%3D%229%22/%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%2212%22%20r%3D%225%22/%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%2212%22%20r%3D%221%22/%3E%3C/svg%3E"); }
+.rpw-svc-shop { --rpw-icon: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%221.8%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M6%207h12l-1%2013H7L6%207z%22/%3E%3Cpath%20d%3D%22M9%207a3%203%200%200%201%206%200%22/%3E%3C/svg%3E"); }
+
+/* Tick lists */
+.rpw-ticks { list-style: none; padding: 0; margin: 0; }
+.rpw-ticks li { position: relative; padding: 10px 0 10px 40px; border-bottom: 1px solid rgba(74, 44, 32, 0.08); font-size: 1.05rem; }
+.rpw-ticks li::before { content: ""; position: absolute; left: 0; top: 9px; width: 26px; height: 26px; border-radius: 50%; background: var(--rpw-brown) url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22white%22%20stroke-width%3D%221.8%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22m5%2012%205%205%209-10%22/%3E%3C/svg%3E") center / 16px no-repeat; }
+.rpw-mypets > .wp-block-columns { background: var(--rpw-card); border-radius: var(--rpw-radius); box-shadow: var(--rpw-shadow); padding: clamp(24px, 4vw, 48px); }
+.rpw-mypets .wp-block-columns, .rpw-about-snip .wp-block-columns { align-items: center; gap: clamp(24px, 5vw, 64px); }
+
+/* Contact strip + contact page */
+.rpw-contact-strip h3 { font-size: 1.1rem; margin-bottom: 0.3em; color: var(--rpw-brown-dark); }
+.rpw-contact-strip .wp-block-column { padding-left: 44px; position: relative; }
+.rpw-contact-strip .wp-block-column::before, .rpw-contact-card::before { content: ""; position: absolute; left: 0; top: 2px; width: 30px; height: 30px; background: var(--rpw-brown); -webkit-mask: var(--rpw-icon) center / contain no-repeat; mask: var(--rpw-icon) center / contain no-repeat; }
+.rpw-contact-strip .wp-block-column:nth-child(1) { --rpw-icon: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%221.8%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M12%2021s-7-6.2-7-11a7%207%200%200%201%2014%200c0%204.8-7%2011-7%2011z%22/%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%2210%22%20r%3D%222.5%22/%3E%3C/svg%3E"); }
+.rpw-contact-strip .wp-block-column:nth-child(2) { --rpw-icon: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%221.8%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M5%204h4l2%205-2.5%201.5a11%2011%200%200%200%205%205L15%2013l5%202v4a2%202%200%200%201-2%202A16%2016%200%200%201%203%206a2%202%200%200%201%202-2%22/%3E%3C/svg%3E"); }
+.rpw-contact-strip .wp-block-column:nth-child(3) { --rpw-icon: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%221.8%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%2212%22%20r%3D%229%22/%3E%3Cpath%20d%3D%22M12%207v5l3%202%22/%3E%3C/svg%3E"); }
+.rpw-contact-card { position: relative; padding-left: 70px; margin-bottom: 16px; height: auto; }
+.rpw-contact-card::before { left: 24px; top: 26px; }
+.rpw-c-visit { --rpw-icon: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%221.8%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M12%2021s-7-6.2-7-11a7%207%200%200%201%2014%200c0%204.8-7%2011-7%2011z%22/%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%2210%22%20r%3D%222.5%22/%3E%3C/svg%3E"); }
+.rpw-c-phone { --rpw-icon: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%221.8%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M5%204h4l2%205-2.5%201.5a11%2011%200%200%200%205%205L15%2013l5%202v4a2%202%200%200%201-2%202A16%2016%200%200%201%203%206a2%202%200%200%201%202-2%22/%3E%3C/svg%3E"); }
+.rpw-c-mail { --rpw-icon: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%221.8%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Crect%20x%3D%223%22%20y%3D%225%22%20width%3D%2218%22%20height%3D%2214%22%20rx%3D%222%22/%3E%3Cpath%20d%3D%22m3%207%209%206%209-6%22/%3E%3C/svg%3E"); }
+.rpw-c-hours { --rpw-icon: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%221.8%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%2212%22%20r%3D%229%22/%3E%3Cpath%20d%3D%22M12%207v5l3%202%22/%3E%3C/svg%3E"); }
+.rpw-contact-cols { gap: clamp(24px, 4vw, 48px) !important; }
+.rpw-map { border-radius: var(--rpw-radius); overflow: hidden; box-shadow: var(--rpw-shadow); height: 100%; min-height: 380px; }
+.rpw-map iframe { width: 100%; height: 100%; min-height: 380px; border: 0; display: block; }
+
+/* Inner page hero + about */
+.rpw-page-hero { background: linear-gradient(135deg, var(--rpw-cream) 0%, var(--rpw-sand) 100%); text-align: center; }
+.rpw-page-hero .rpw-lead { margin: 0 auto; }
+.rpw-about-img img { border-radius: var(--rpw-radius); box-shadow: var(--rpw-shadow); }
+
+/* Mobile */
+.entry-content .rpw-hero, .entry-content .rpw-section, .entry-content .rpw-band, .entry-content .rpw-page-hero { padding-left: 16px !important; padding-right: 16px !important; }
+@media (max-width: 767px) {
+	.rpw-products ul.products { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; gap: 12px !important; }
+	.rpw-products ul.products li.product .woocommerce-loop-product__title { font-size: 0.9rem; }
+}
+@media (max-width: 781px) {
+	.rpw-hero-photos { min-height: 300px; margin-top: 8px; }
+	.rpw-contact-strip .wp-block-column { margin-bottom: 8px; }
+}
+@media (prefers-reduced-motion: reduce) {
+	.rpw-card, .rpw-pet-tile .rpw-tile-img img { transition: none; }
 }
