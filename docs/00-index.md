@@ -22,6 +22,7 @@
 - [[ADR-010-shared-twenty-workspace]]
 - [[ADR-011-theme-astra-to-kadence]]
 - [[ADR-012-latepoint-pay-at-store]]
+- [[ADR-013-pet-history]]
 - Template: [[_adr-template]]
 
 ## Configuration
@@ -30,6 +31,7 @@
 - [[plugins]] — every plugin/theme, version, why it exists
 - [[woocommerce-settings]]
 - [[services-booking]] — LatePoint services, hours, agents (placeholders)
+- [[pets-and-history]] — rpw-core pet profiles + pet history
 
 ## Integrations
 - [[twenty-schema]]

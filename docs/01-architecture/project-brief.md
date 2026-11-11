@@ -36,6 +36,7 @@ Customer contact data and pets are two-way synced — see [[sync-rules]].
 - Private custom post type `rpw_pet`, author = owning customer; never publicly queryable.
 - Fields: name, species, breed, date_of_birth, sex, weight_kg, photo, vaccinations (repeater: vaccine, date_given, next_due), next_grooming_due, notes, twenty_id, sync_hash, updated_at.
 - My Account tab "My Pets": list, add, edit, delete (soft delete).
+- **Pet history** (added 2026-11-11, [[ADR-013-pet-history]]): visits (from bookings), vaccinations, health/vet notes, purchases (from orders). Staff edit in wp-admin; customers read, internal notes hidden. Details in [[pets-and-history]].
 - REST namespace `rpw/v1` (authenticated with an application password for n8n): pets CRUD, customers lookup by phone/email.
 - Fires outbound webhook to n8n on pet create/update/delete and on customer profile update.
 
