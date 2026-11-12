@@ -14,6 +14,7 @@ updated: 2026-11-11
 | Tax / GST display | TBD with client | Phase 1 |
 | Guest checkout | TBD | Phase 1 |
 | Registration fields | phone (required), WhatsApp opt-in checkbox | Phase 1 |
+| Customer registration | On at My Account (`woocommerce_enable_myaccount_registration=yes`); customer sets own password (`woocommerce_registration_generate_password=no`, staging has no email); username auto-generated — needed so owners can add pets | 2026-11-12 |
 
 Pincode list: _paste once confirmed with client_.
 
